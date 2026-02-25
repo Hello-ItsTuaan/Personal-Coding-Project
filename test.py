@@ -1,83 +1,76 @@
-import os
-import time
+import os 
 import shutil
+import sys as skibidi
+import time
 from datetime import datetime
 
 width = shutil.get_terminal_size().columns
+os.system("cls")
 
-print("Welcome to Tuna BMI Calculator script".center(width))
-print(("Time: " + datetime.now().strftime("%H:%M:%S")).center(width))
+print("Welcome to our Mini Data Analyzer".center(width))
+print("1 .Please choose your option: ")
+print("2. Find the highest_score point ")
+print("3. Find the lowest point ")
+print("4. Find the average: ")
+print("uhh, quit:  ")
 
-def goodbye_message():
-    for _ in range(10000):
-        print("Why don't you use our BMI calculator?")
-        time.sleep(0.1)
+def taking_scores():
+        # 1. Nhập dữ liệu từ user
+    raw_input_score = input("Please enter raw score, split with 'space': ")
+    score_list = raw_input_score.split()
+    score = []
+    try:
+        for item in score_list:
+            score.append(int(item))
+    except ValueError:
+        print("Invalid input! Please enter numbers only.")
+        return
 
-def take_information():
-    Name = str(input("Enter your name: "))
-    unit = str(input("Enter your unit (m/cm/ft/in): ")).strip().lower()
-    weight = float(input("Enter your weight in kg: "))
-    height = float(input(f"Enter your height in {unit}: "))
-    return Name, unit, weight, height
-
-def regcognize_unit(unit, height):
-    if unit == "m":
-        return height
-    elif unit == "cm":
-        height = height / 100
-    elif unit == "ft":
-        height = height / 3.281
-    elif unit == "in":
-        height = height / 39.37
-    else:
-        for _ in range(10):
-            os.system("cls")
-            print(f"⚠ ERROR: The unit shouldn't be '{unit}'".center(width))
-            print("PLEASE TRY AGAIN!".center(width))
-            time.sleep(0.5)
-            return None
+    # 3. Kiểm tra list rỗng
+    if not score:
+        print("No data to analyze.")
+        return
     
-def calculate_bmi(Name, weight, height):
-    BMI = weight / (height ** 2) 
-    BMI = round(BMI, 3)
-    print("---Process complete---".center(width))
-    print(f"Hi {Name}, your BMI is ~ {BMI}")
-    if BMI < 18.5:
-        print("You are underweight")
-    elif BMI < 25:
-        print("You have a normal weight")
-    elif BMI < 30:
-        print("You are overweight")
-    else:
-        print("You are obese")
+    return score
 
-    time.sleep(3)
-    print("---Programm end---".center(width))
-    
 
-def main():
-    ques = input("Do you want to calculate your BMI? (yes/no/bye): ").strip().lower()
+def findthehighest(score):
 
-    if ques == "yes":
-        Name, unit, weight, height = take_information()
+    # 4. Gán mốc ban đầu
+    highest_score = score[0]
 
-        height = regcognize_unit(unit, height)
-        if height is None:
-            return
+    # 5. So sánh từng phần tử
+    for num in score:
+        if num > highest_score:
+            highest_score = num
 
-        calculate_bmi(Name, weight, height)
+    # 6. In kết quả
+    print(f"highest score is: {highest_score}")
 
-    elif ques == "no":
-        goodbye_message()
+def findthelowest(score):
+    lowest_score = score[0]
+    for num in score:
+        if num < lowest_score:
+            lowest_score = num
+    print(f"Lowest score is: {lowest_score}")
 
-    elif ques == "bye":
-        print("Thank you for using our script!".center(width))
-        exit()
+def findaverage(score):
+    total = sum(score)
+    part = len(score)
 
-    else:
-        print("Invalid input, please try again!")
+    average = total / part
+    average = round(total / part, 2)
+
+    print(f"Average score: {average}")
+
     
 
-while True:
-    main()
-    
+
+
+
+scores = taking_scores()
+
+if scores is not None:
+    findthehighest(scores)
+    findthelowest(scores)
+    findaverage(scores)
