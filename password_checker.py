@@ -3,7 +3,7 @@ import sys                     # Import sys (hiện tại chưa dùng, có thể
 import shutil                  # Dùng để lấy kích thước terminal
 import string                  # Cung cấp ascii_letters, digits,...
 from datetime import datetime  # Lấy thời gian hiện tại
-import time                    # Dùng sleep()
+import time                    # Dùng sleep()   
 import random                  # Dùng random.choice()
 
 
