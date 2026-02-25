@@ -121,6 +121,7 @@ def statistics():
                     continue
 
                 parts = line.split("|")
+                
 
                 if len(parts) != 4:
                     continue
