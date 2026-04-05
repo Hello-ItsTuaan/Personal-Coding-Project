@@ -65,7 +65,7 @@ def view_sessions():
                     continue
                 
                 subject, learningtime = parts
-                learningtime = int(learningtime)
+                learningtime = int(learningtime.strip())
 
                 table.add_row([subject, learningtime])
 
