@@ -49,6 +49,60 @@ def add_sessions():
     os.system("cls")
 
 
+from prettytable import PrettyTable
+
+def view_sessions():
+    try: 
+        table = PrettyTable()
+        table.field_names = ["Subject", "Time"]
+        with open("sessions.txt", "r", encoding="utf-8") as file: 
+            for line in file: 
+                if not line:
+                    continue
+
+                parts = line.split("-")
+                if len(parts) != 2:
+                    continue
+                
+                subject, learningtime = parts
+                learningtime = int(learningtime)
+
+                table.add_row([subject, learningtime])
+
+        print(table)
+        input()
+
+    except FileNotFoundError:
+        print("No data found")
 
 
-add_sessions()
+while True:
+    print("_____________________".center(width))
+    print(("Time: " + datetime.now().strftime("%H:%M:%S")).center(width))
+    print("Welcome to the Family Expense Tracking System!".center(width))
+    print("(1) Add sessions")
+    print("(2) View sessions")
+    print("(3) Exit")
+
+
+    choice = input("My choice: ")
+
+    if choice == "1":
+        os.system("cls")
+        print("Loading...".center(width))
+        time.sleep(1)
+        os.system("cls")
+        add_sessions()
+
+    elif choice == "2":
+        os.system("cls")
+        print("Loading...".center(width))
+        time.sleep(1)
+        os.system("cls")
+        view_sessions()
+    
+    elif choice == "3":
+        os.system("cls")
+        print("Goodbye! See you next time.".center(width))
+        input()
+        sys.exit()  # Thoát chương trình
