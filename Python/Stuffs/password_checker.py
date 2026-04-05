@@ -108,7 +108,7 @@ def save_users():
                     exists = True
                     break
     except FileNotFoundError:
-        pass  # nếu file chưa tồn tại thì coi như chưa có user nào
+        pass  # nếu file chưa tồn tại thì coi như chưDa có user nào
 
     if exists:
         print("Username already exists!".center(width))

@@ -4,3 +4,5 @@ Food|Beef|2|80000
 Food|Beef|12|12000
 test|testname|12|0
 Game|robux|1200|20000
+Food|beef|2|12
+Food|Egg|12|3
