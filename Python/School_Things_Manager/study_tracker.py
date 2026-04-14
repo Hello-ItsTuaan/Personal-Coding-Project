@@ -7,6 +7,7 @@ from prettytable import PrettyTable
 import matplotlib.pyplot as plt
 import subprocess
 import random
+from datetime import datetime
 def clear():
     os.system("cls" if os.name == "nt" else "clear")
 
