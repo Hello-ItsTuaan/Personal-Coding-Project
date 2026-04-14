@@ -8,6 +8,9 @@ import matplotlib.pyplot as plt
 import subprocess
 import random
 from datetime import datetime
+
+today = datetime.now().strftime("%Y-%m-%d")
+
 def clear():
     os.system("cls" if os.name == "nt" else "clear")
 
