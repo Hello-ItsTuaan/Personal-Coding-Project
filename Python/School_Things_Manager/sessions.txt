@@ -1,4 +1,0 @@
-English|60
-litterature|120
-Science|80
-History|40

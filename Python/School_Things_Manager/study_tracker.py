@@ -13,16 +13,18 @@ def clear():
     os.system("cls" if os.name == "nt" else "clear")
 
 width = shutil.get_terminal_size().columns
+
 # ================= LOADING SPINNER ==============
 def progress_bar(duration=3):
     total = 100
 
     for i in range(total + 1):
-        bar = "█" * (i // 2)  # độ dài thanh
+        bar = "█" * (i // 2)
         print(f"\r[{bar:<50}] {i}%", end="")
         time.sleep(duration / total)
 
     print("\n✅ Done!")
+
 # ================== CHECK FOR EXISTED ============
 def checking_for_exists(subject):
     try: 
@@ -31,7 +33,8 @@ def checking_for_exists(subject):
                 if not line.strip():
                     continue
                 
-                saved_subject, _ = line.strip().split("|")
+                parts = line.strip().split("|")
+                saved_subject = parts[0]
                 
                 if saved_subject.lower() == subject.lower():
                     return True
@@ -87,17 +90,17 @@ def add_sessions():
                         if not line.strip():
                             continue
 
-                        saved_subject, minutes = line.strip().split("|")
-                        minutes = int(minutes)
+                        s, m, d = line.strip().split("|")
+                        m = int(m)
 
-                        if saved_subject.lower() == subject.lower():
-                            minutes += extra_time
+                        if s.lower() == subject.lower():
+                            m += extra_time
 
-                        updated_sessions.append((saved_subject, minutes))
+                        updated_sessions.append((s, m, d))
 
                 with open("sessions.txt", "w", encoding="utf-8") as file:
-                    for s, m in updated_sessions:
-                        file.write(f"{s}|{m}\n")
+                    for s, m, d in updated_sessions:
+                        file.write(f"{s}|{m}|{d}\n")
 
                 print("✅ Time added successfully!")
                 input()
@@ -121,7 +124,7 @@ def add_sessions():
             clear()
 
     with open("sessions.txt", "a", encoding="utf-8") as file:
-        file.write(f"{subject}|{minutes}\n")
+        file.write(f"{subject}|{minutes}|{today}\n")
 
     print(f"Added: {subject} | {minutes} min")
     input()
@@ -132,7 +135,7 @@ def add_sessions():
 def del_sessions():
     try: 
         table = PrettyTable()
-        table.field_names = ["Subject", "Time"]
+        table.field_names = ["Subject", "Time", "Date"]
 
         sessions = []
         
@@ -141,9 +144,9 @@ def del_sessions():
                 if not line.strip():
                     continue
 
-                subject, minutes = line.strip().split("|")
-                sessions.append((subject, minutes))
-                table.add_row([subject, int(minutes)])
+                s, m, d = line.strip().split("|")
+                sessions.append((s, m, d))
+                table.add_row([s, int(m), d])
 
         print(table)
         del_subject = input("Enter name of subject to remove: ")
@@ -151,9 +154,9 @@ def del_sessions():
         new_sessions = []
         found = False
 
-        for subject, minutes in sessions: 
-            if subject.lower() != del_subject.lower():
-                new_sessions.append((subject, minutes))
+        for s, m, d in sessions: 
+            if s.lower() != del_subject.lower():
+                new_sessions.append((s, m, d))
             else: 
                 found = True 
 
@@ -161,8 +164,8 @@ def del_sessions():
             print("❌ Subject not found!")
         else: 
             with open("sessions.txt", "w", encoding="utf-8") as file: 
-                for subject, minutes in new_sessions:
-                    file.write(f"{subject}|{minutes}\n")
+                for s, m, d in new_sessions:
+                    file.write(f"{s}|{m}|{d}\n")
             print("✅ Deleted successfully!")
 
         input()
@@ -177,15 +180,15 @@ def del_sessions():
 def view_sessions():
     try:
         table = PrettyTable()
-        table.field_names = ["Subject", "Time"]
+        table.field_names = ["Subject", "Time", "Date"]
 
         with open("sessions.txt", "r", encoding="utf-8") as file:
             for line in file:
                 if not line.strip():
                     continue
 
-                subject, minutes = line.strip().split("|")
-                table.add_row([subject, int(minutes)])
+                s, m, d = line.strip().split("|")
+                table.add_row([s, int(m), d])
 
         print(table)
         input()
@@ -206,14 +209,16 @@ def stats():
                 if not line.strip():
                     continue
 
-                subject, minutes = line.strip().split("|")
-                subject = subject.lower()
-                minutes = int(minutes)
+                s, m, d = line.strip().split("|")
 
-                if subject in subjects:
-                    subjects[subject] += minutes
-                else:
-                    subjects[subject] = minutes
+                if d == today:
+                    s = s.lower()
+                    m = int(m)
+
+                    if s in subjects:
+                        subjects[s] += m
+                    else:
+                        subjects[s] = m
 
         if not subjects:
             print("No data for graph 😴")
@@ -224,7 +229,7 @@ def stats():
         y = list(subjects.values())
 
         plt.bar(x, y)
-        plt.title("Study Progress")
+        plt.title("Study Progress (Today)")
         plt.xlabel("Subjects")
         plt.ylabel("Minutes")
         plt.show()
@@ -235,16 +240,14 @@ def stats():
 
 # ================== BEWARE! ===============
 def reset():
-
-
     file_path = "sessions.txt"
 
-    # Check if file exists to avoid FileNotFoundError
     if os.path.isfile(file_path):
         os.remove(file_path)
         print("File deleted.")
     else:
         print("File not found.")
+
 # ================== MENU ==================
 def menu():
     clear()
@@ -289,7 +292,6 @@ def menu():
         
         elif choice == "del":
             print("Do you really want to reset the data? ALL DATA WILL BE LOST!".center(width))
-            # Thêm .lower() ngay tại input để xử lý cả 'Y' và 'y'
             user_confirm = input("MY CHOICE (y/n): ").lower() 
             
             if user_confirm == "y":
@@ -298,10 +300,6 @@ def menu():
             else:
                 print("Phew! That was close. Nice choice!".center(width))
                 return
-
-            
-            
-
 
         else:
             print("Invalid choice")
