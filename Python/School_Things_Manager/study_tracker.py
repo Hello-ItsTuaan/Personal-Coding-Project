@@ -5,12 +5,23 @@ import sys
 from datetime import datetime
 from prettytable import PrettyTable
 import matplotlib.pyplot as plt
+import subprocess
+import random
 
 def clear():
     os.system("cls" if os.name == "nt" else "clear")
 
 width = shutil.get_terminal_size().columns
+# ================= LOADING SPINNER ==============
+def progress_bar(duration=3):
+    total = 100
 
+    for i in range(total + 1):
+        bar = "█" * (i // 2)  # độ dài thanh
+        print(f"\r[{bar:<50}] {i}%", end="")
+        time.sleep(duration / total)
+
+    print("\n✅ Done!")
 # ================== CHECK FOR EXISTED ============
 def checking_for_exists(subject):
     try: 
@@ -224,6 +235,9 @@ def stats():
 
 # ================== MENU ==================
 def menu():
+    clear()
+    progress_bar(1)
+    
     while True:
         print("_____________________".center(width))
         print(("Time: " + datetime.now().strftime("%H:%M:%S")).center(width))
@@ -256,6 +270,12 @@ def menu():
             print("Bye 👋")
             sys.exit()
         
+        elif choice == "rl":
+            clear()
+            progress_bar(1)
+            
+            
+            subprocess.run(["python", "study_tracker.py"])
 
         else:
             print("Invalid choice")
