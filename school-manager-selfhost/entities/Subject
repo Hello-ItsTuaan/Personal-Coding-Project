@@ -1,0 +1,54 @@
+{
+  "name": "Subject",
+  "type": "object",
+  "properties": {
+    "ten_mon": {
+      "type": "string",
+      "title": "T\u00ean m\u00f4n h\u1ecdc"
+    },
+    "ma_mon": {
+      "type": "string",
+      "title": "M\u00e3 m\u00f4n"
+    },
+    "so_tin_chi": {
+      "type": "number",
+      "title": "S\u1ed1 t\u00edn ch\u1ec9"
+    },
+    "nam_hoc": {
+      "type": "string",
+      "title": "N\u0103m h\u1ecdc"
+    },
+    "can_co_gang": {
+      "type": "boolean",
+      "title": "C\u1ea7n c\u1ed1 g\u1eafng th\u00eam"
+    },
+    "ghi_chu": {
+      "type": "string",
+      "title": "Ghi ch\u00fa"
+    },
+    "muc_tieu_diem": {
+      "type": "number",
+      "title": "M\u1ee5c ti\u00eau \u0111i\u1ec3m"
+    }
+  },
+  "required": [
+    "ten_mon"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    },
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

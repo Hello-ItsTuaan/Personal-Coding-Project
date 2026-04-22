@@ -1,0 +1,83 @@
+{
+  "name": "Grade",
+  "type": "object",
+  "properties": {
+    "subject_id": {
+      "type": "string",
+      "title": "M\u00f4n h\u1ecdc"
+    },
+    "ten_mon": {
+      "type": "string",
+      "title": "T\u00ean m\u00f4n"
+    },
+    "loai_bai": {
+      "type": "string",
+      "title": "Lo\u1ea1i b\u00e0i ki\u1ec3m tra",
+      "enum": [
+        "Ki\u1ec3m tra 1",
+        "Ki\u1ec3m tra 2",
+        "Ki\u1ec3m tra 3",
+        "Ki\u1ec3m tra 4",
+        "Gi\u1eefa k\u1ef3",
+        "Cu\u1ed1i k\u1ef3",
+        "Th\u1ef1c h\u00e0nh",
+        "Ti\u1ec3u lu\u1eadn"
+      ]
+    },
+    "diem": {
+      "type": "number",
+      "title": "\u0110i\u1ec3m"
+    },
+    "he_so": {
+      "type": "number",
+      "title": "H\u1ec7 s\u1ed1"
+    },
+    "hoc_ky": {
+      "type": "string",
+      "title": "H\u1ecdc k\u1ef3"
+    },
+    "nam_hoc": {
+      "type": "string",
+      "title": "N\u0103m h\u1ecdc"
+    },
+    "ngay_kiem_tra": {
+      "type": "string",
+      "title": "Ng\u00e0y ki\u1ec3m tra"
+    },
+    "gio_kiem_tra": {
+      "type": "string",
+      "title": "Gi\u1edd ki\u1ec3m tra (HH:MM)"
+    },
+    "dia_diem": {
+      "type": "string",
+      "title": "\u0110\u1ecba \u0111i\u1ec3m / Ph\u00f2ng thi"
+    },
+    "da_co_ket_qua": {
+      "type": "boolean",
+      "title": "\u0110\u00e3 c\u00f3 k\u1ebft qu\u1ea3"
+    }
+  },
+  "required": [
+    "subject_id",
+    "loai_bai",
+    "he_so",
+    "hoc_ky"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    },
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "name": "Goal",
+  "type": "object",
+  "properties": {
+    "ten_muc_tieu": {
+      "type": "string",
+      "title": "T\u00ean m\u1ee5c ti\u00eau"
+    },
+    "mo_ta": {
+      "type": "string",
+      "title": "M\u00f4 t\u1ea3"
+    },
+    "loai_muc_tieu": {
+      "type": "string",
+      "title": "Lo\u1ea1i m\u1ee5c ti\u00eau",
+      "enum": [
+        "TB m\u00f4n h\u1ecdc",
+        "TB h\u1ecdc k\u1ef3",
+        "TB c\u1ea3 n\u0103m",
+        "S\u1ed1 m\u00f4n \u0111\u1ea1t"
+      ]
+    },
+    "gia_tri_muc_tieu": {
+      "type": "number",
+      "title": "Gi\u00e1 tr\u1ecb m\u1ee5c ti\u00eau"
+    },
+    "so_mon_ap_dung": {
+      "type": "number",
+      "title": "S\u1ed1 m\u00f4n \u00e1p d\u1ee5ng"
+    },
+    "hoc_ky": {
+      "type": "string",
+      "title": "H\u1ecdc k\u1ef3"
+    },
+    "nam_hoc": {
+      "type": "string",
+      "title": "N\u0103m h\u1ecdc"
+    },
+    "dat_duoc": {
+      "type": "boolean",
+      "title": "\u0110\u00e3 \u0111\u1ea1t \u0111\u01b0\u1ee3c"
+    }
+  },
+  "required": [
+    "ten_muc_tieu",
+    "loai_muc_tieu",
+    "gia_tri_muc_tieu"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    },
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

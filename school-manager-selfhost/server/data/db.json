@@ -1,0 +1,162 @@
+{
+  "subjects": [
+    {
+      "id": "c1c75107-9b5c-459d-ab56-7a1aea21a7ab",
+      "created_at": "2026-04-15T14:24:01.706Z",
+      "updated_at": "2026-04-15T14:24:01.706Z",
+      "ten_mon": "Toán",
+      "ma_mon": "toan",
+      "nam_hoc": "2025-2026",
+      "can_co_gang": false,
+      "muc_tieu_diem": 9,
+      "ghi_chu": ""
+    }
+  ],
+  "grades": [
+    {
+      "id": "8343f3d8-0471-475f-b791-86b174a80853",
+      "created_at": "2026-04-15T14:24:05.684Z",
+      "updated_at": "2026-04-15T14:24:05.684Z",
+      "subject_id": "c1c75107-9b5c-459d-ab56-7a1aea21a7ab",
+      "ten_mon": "Toán",
+      "loai_bai": "Kiểm tra 1",
+      "diem": 10,
+      "he_so": 1,
+      "hoc_ky": "HK1",
+      "da_co_ket_qua": true
+    },
+    {
+      "id": "d3ddd721-8eee-4c36-ab64-5c7d720aff7e",
+      "created_at": "2026-04-15T14:24:06.848Z",
+      "updated_at": "2026-04-15T14:24:10.490Z",
+      "subject_id": "c1c75107-9b5c-459d-ab56-7a1aea21a7ab",
+      "ten_mon": "Toán",
+      "loai_bai": "Kiểm tra 2",
+      "diem": 10,
+      "he_so": 1,
+      "hoc_ky": "HK1",
+      "da_co_ket_qua": true
+    },
+    {
+      "id": "04fd7d20-b6ce-411d-a82a-0393143b0b19",
+      "created_at": "2026-04-15T14:24:12.852Z",
+      "updated_at": "2026-04-15T14:24:12.852Z",
+      "subject_id": "c1c75107-9b5c-459d-ab56-7a1aea21a7ab",
+      "ten_mon": "Toán",
+      "loai_bai": "Kiểm tra 3",
+      "diem": 10,
+      "he_so": 1,
+      "hoc_ky": "HK1",
+      "da_co_ket_qua": true
+    },
+    {
+      "id": "6b7ed974-2e2e-4b2d-8908-d1df4470a553",
+      "created_at": "2026-04-15T14:24:13.948Z",
+      "updated_at": "2026-04-15T14:24:13.948Z",
+      "subject_id": "c1c75107-9b5c-459d-ab56-7a1aea21a7ab",
+      "ten_mon": "Toán",
+      "loai_bai": "Kiểm tra 4",
+      "diem": 9,
+      "he_so": 1,
+      "hoc_ky": "HK1",
+      "da_co_ket_qua": true
+    },
+    {
+      "id": "3ac67b9d-fc43-442c-a93b-686b817aa99a",
+      "created_at": "2026-04-15T14:24:16.190Z",
+      "updated_at": "2026-04-15T14:24:16.190Z",
+      "subject_id": "c1c75107-9b5c-459d-ab56-7a1aea21a7ab",
+      "ten_mon": "Toán",
+      "loai_bai": "Giữa kỳ",
+      "diem": 8.5,
+      "he_so": 2,
+      "hoc_ky": "HK1",
+      "da_co_ket_qua": true
+    },
+    {
+      "id": "bf7de7d3-6784-4a02-a9b0-ef87f283fded",
+      "created_at": "2026-04-15T14:24:22.539Z",
+      "updated_at": "2026-04-15T14:24:22.539Z",
+      "subject_id": "c1c75107-9b5c-459d-ab56-7a1aea21a7ab",
+      "ten_mon": "Toán",
+      "loai_bai": "Cuối kỳ",
+      "diem": 8.8,
+      "he_so": 3,
+      "hoc_ky": "HK1",
+      "da_co_ket_qua": true
+    },
+    {
+      "id": "7e4fca58-9555-42c9-a926-4f7f79b7052d",
+      "created_at": "2026-04-15T14:24:27.193Z",
+      "updated_at": "2026-04-15T14:24:27.193Z",
+      "subject_id": "c1c75107-9b5c-459d-ab56-7a1aea21a7ab",
+      "ten_mon": "Toán",
+      "loai_bai": "Kiểm tra 1",
+      "diem": 8.5,
+      "he_so": 1,
+      "hoc_ky": "HK2",
+      "da_co_ket_qua": true
+    },
+    {
+      "id": "7140e04d-516b-4fb2-badc-a965690f2db8",
+      "created_at": "2026-04-15T14:24:28.947Z",
+      "updated_at": "2026-04-15T14:24:28.947Z",
+      "subject_id": "c1c75107-9b5c-459d-ab56-7a1aea21a7ab",
+      "ten_mon": "Toán",
+      "loai_bai": "Kiểm tra 2",
+      "diem": 10,
+      "he_so": 1,
+      "hoc_ky": "HK2",
+      "da_co_ket_qua": true
+    },
+    {
+      "id": "5f5abd3d-2062-4bee-927a-85de25d75f73",
+      "created_at": "2026-04-15T14:24:29.513Z",
+      "updated_at": "2026-04-15T14:24:29.513Z",
+      "subject_id": "c1c75107-9b5c-459d-ab56-7a1aea21a7ab",
+      "ten_mon": "Toán",
+      "loai_bai": "Kiểm tra 3",
+      "diem": 10,
+      "he_so": 1,
+      "hoc_ky": "HK2",
+      "da_co_ket_qua": true
+    },
+    {
+      "id": "f229ad20-6329-4aed-a6d1-b62b5d0ad893",
+      "created_at": "2026-04-15T14:24:30.147Z",
+      "updated_at": "2026-04-15T14:24:30.147Z",
+      "subject_id": "c1c75107-9b5c-459d-ab56-7a1aea21a7ab",
+      "ten_mon": "Toán",
+      "loai_bai": "Kiểm tra 4",
+      "diem": 10,
+      "he_so": 1,
+      "hoc_ky": "HK2",
+      "da_co_ket_qua": true
+    },
+    {
+      "id": "dfde0257-1bd0-4ed5-888a-2605b4c48d54",
+      "created_at": "2026-04-15T14:24:32.913Z",
+      "updated_at": "2026-04-15T14:24:32.913Z",
+      "subject_id": "c1c75107-9b5c-459d-ab56-7a1aea21a7ab",
+      "ten_mon": "Toán",
+      "loai_bai": "Giữa kỳ",
+      "diem": 9.5,
+      "he_so": 2,
+      "hoc_ky": "HK2",
+      "da_co_ket_qua": true
+    },
+    {
+      "id": "cf071171-b114-4cac-bc03-133d7cea215c",
+      "created_at": "2026-04-15T14:24:36.456Z",
+      "updated_at": "2026-04-15T14:24:36.456Z",
+      "subject_id": "c1c75107-9b5c-459d-ab56-7a1aea21a7ab",
+      "ten_mon": "Toán",
+      "loai_bai": "Cuối kỳ",
+      "diem": 8,
+      "he_so": 3,
+      "hoc_ky": "HK2",
+      "da_co_ket_qua": true
+    }
+  ],
+  "goals": []
+}

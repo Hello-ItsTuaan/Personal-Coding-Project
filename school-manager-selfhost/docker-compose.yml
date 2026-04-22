@@ -1,0 +1,9 @@
+services:
+  school-manager:
+    build: .
+    ports:
+      - "8787:8787"
+    volumes:
+      - ./server/data:/app/server/data
+    restart: unless-stopped
+
