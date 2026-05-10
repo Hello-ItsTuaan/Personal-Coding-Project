@@ -60,36 +60,54 @@ def list_file():
     
     for task in list_tasks:
         name = task["name"]
+        done = task["done"]  # True hoặc False
         deadline = datetime.fromisoformat(task["deadline"])
         delta = deadline - datetime.now()
         day_left = delta.days
-        if day_left < 3:
-            print(Fore.RED + f"{name} → {day_left} left")
-        elif day_left >= 10:
-            print(Fore.YELLOW+ + f"{name} → {day_left} left")
+        if day_left <= 0:
+            print(Fore.RED + f'{name} → {day_left} left (Deadline: "{deadline}") \n ---- DONE?: {done}')
+        elif day_left <= 3:
+            print(Fore.YELLOW + f'{name} → {day_left} left (Deadline: "{deadline}") \n ---- DONE?: {done}')
         else:
-            print(Fore.GREEN + f"(name) → {day_left} left() ")
+            print(Fore.GREEN + f'{name} → {day_left} left (Deadline: "{deadline}") \n ---- DONE?: {done}')
     input()
     os.system("cls")
-    menu()
+    
+def mark_done():
+    with open("tasks.json", "r") as file:
+        list_tasks = json.load(file)
+    
+    for i, task in enumerate(list_tasks): 
+        print(f"{i+1}. {task['name']} - ({task['done']})")
 
 
+    choice = int(input("Choose your task to mark it as done: "))
+    list_tasks[choice - 1]["done"] = True
+    os.system("cls")
+    print(f"Marked!".center(width))
+    input()
 
-
-def done():
-    print("Stil in development!")
-
-        
-
-
+    with open("tasks.json", 'w') as file:
+        json.dump(list_tasks, file, indent=4)
 def menu():
-    print("Please enter your chocie! ".center(width))
-    print("1. Add tasks ")
-    print("2. To view tasks")
-    choice = input(">>>")
-    if choice == "1":
-        add_task()
-    if choice == '2':
-        list_file()
+    while True:
+        os.system("cls")
+        print("Please enter your choice!".center(width))
+        print("1. Add tasks")
+        print("2. To view tasks")
+        print("3. Mark done")
+        choice = input(">>>")
+        if choice == "1":
+            add_task()
+        elif choice == "2":
+            list_file()
+        elif choice == "3":
+            mark_done()
+
 
 menu()
+
+
+#⬜ Check task đã done chưa
+#    ├── Option 1: Delete + set deadline mới (replace)
+#    └── Option 2: Gia hạn thêm ngày
