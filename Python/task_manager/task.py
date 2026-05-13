@@ -24,45 +24,49 @@ def add_task():
 
 
     while True: 
+        clear()
         print("Please enter your TASK name!".center(width))
         task_name = input(">>>")
-        
+        task_name_lower = task_name.lower()
 
-        if is_duplicate(task_name):
-            print("You have 2 options: ".center(width))
+        if is_duplicate(task_name_lower):
+            clear()
+            print(f"There is another task that named {task_name_lower} - You have 2 options: ".center(width))
             print(f"1. Set a new task with new deadline ")
-            print(f"2. Set a new deadline for task: '{task_name}'")
+            print(f"2. Set a new deadline for task: '{task_name_lower}'")
             
             replace_or_setnew = input(">>>")
 
             if replace_or_setnew == "1": 
                 continue
+                clear()
             elif replace_or_setnew == "2": 
-                os.system("cls")
+                clear()
                 print("Opsie! There are 2 new options:")
-                print(f"1. Add more time to {task_name} ")
-                print(f"2. Set a new deadline for task: '{task_name}'")
+                print(f"1. Add more time to {task_name_lower} ")
+                print(f"2. Set a new deadline for task: '{task_name_lower}'")
                 choice = input(">>>")
+                clear()
             
             
             if choice == "1":
                 
                 for task in updated_task:
-                    if task['name'] == task_name:
+                    if task['name'] == task_name_lower:
                         current_deadline = task['deadline']
                         break
                 
                 extra_days = int(input(f"Current deadline: {current_deadline}\nHow many days to add? "))
 
                 for task in updated_task:
-                    if task['name'] == task_name:
+                    if task['name'] == task_name_lower:
                         old = datetime.fromisoformat(task['deadline'])
                         task["deadline"] = str(old + timedelta(days=extra_days))
                         
                 with open("tasks.json", 'w') as file: 
                     json.dump(updated_task, file, indent=4)
                         
-                print(f"Added {extra_days} day(s) to {task_name} sucessfully! ")
+                print(f"Added {extra_days} day(s) to {task_name_lower} sucessfully! ")
                 
 
             
@@ -82,11 +86,11 @@ def add_task():
                 
                 try: 
                     for task in updated_task:
-                        if task["name"] == task_name:
+                        if task["name"] == task_name_lower:
                             task["deadline"] = str(deadline_parsed)
                     with open("tasks.json", 'w') as file: 
                         json.dump(updated_task, file, indent=4)
-                    print(f"Task {task_name} has been updated!")
+                    print(f"Task {task_name_lower} has been updated!")
                     
 
                 except FileNotFoundError:
@@ -100,7 +104,7 @@ def add_task():
 
 
         while True:
-            print(f"Please enter deadline for '{task_name}'. Ex: 14/01/2013-23:00".center(width))
+            print(f"Please enter deadline for '{task_name_lower}'. Ex: 14/01/2013-23:00".center(width))
             task_deadline = input(">>>")
             try:
                 deadline = datetime.strptime(task_deadline, "%d/%m/%Y-%H:%M")
@@ -110,11 +114,11 @@ def add_task():
                 print(f"Error found: {e}")
 
         print(f"Saved your task: {repr(task_deadline)}".center(width))   # ✅
-        save_task(task_name, deadline)
+        save_task(task_name_lower, deadline)
         break
 
 
-def is_duplicate(task_name):
+def is_duplicate(task_name_lower):
     try: 
         with open("tasks.json", 'r') as file:
             existing_task = json.load(file)
@@ -125,14 +129,14 @@ def is_duplicate(task_name):
     
     
     for task in existing_task:
-        if task['name'] == task_name:
+        if task['name'] == task_name_lower:
             return True
     return False 
     
 
 
 	
-def save_task(task_name, deadline):
+def save_task(task_name_lower, deadline):
     try:
         with open("tasks.json", 'r') as file:
             updated_tasks = json.load(file)
@@ -142,7 +146,7 @@ def save_task(task_name, deadline):
         updated_tasks = []
 
     updated_tasks.append({
-        "name": task_name,
+        "name": task_name_lower,
         "deadline": str(deadline),
         "done": False
     })
@@ -152,7 +156,7 @@ def save_task(task_name, deadline):
 
 
 def list_file():
-    os.system("cls")
+    clear()
     try:
         with open("tasks.json", 'r') as file: 
             list_tasks = json.load(file)     
@@ -168,7 +172,7 @@ def list_file():
         delta = deadline - datetime.now()
         day_left = delta.days
         if day_left <= 0:
-            print(Fore.WHITE + f'{name} → {day_left} left (Deadline: "{deadline}") \n ---- DONE?: {done}')
+            print(Fore.WHITE + f'(PASSED) {name} → {day_left} day passed (Deadline: "{deadline}") \n ---- DONE?: {done}')
         elif day_left <= 3:
             print(Fore.RED + f'{name} → {day_left} left (Deadline: "{deadline}") \n ---- DONE?: {done}')
         elif day_left <= 7:
@@ -176,7 +180,7 @@ def list_file():
         else:
             print(Fore.GREEN + f'{name} → {day_left} left (Deadline: "{deadline}") \n ---- DONE?: {done}')
     input()
-    os.system("cls")
+    clear()
     
 def mark_done():
     while True:
@@ -193,7 +197,7 @@ def mark_done():
             with open("tasks.json", 'w') as file:
                 json.dump(list_tasks, file, indent=4)
             
-            os.system("cls")
+            clear()
             print(f"Marked!".center(width))
             input()
             break
@@ -207,7 +211,7 @@ def mark_done():
             input()
 def menu():
     while True:
-        os.system("cls")
+        clear()
         print("Please enter your choice!".center(width))
         print("1. Add tasks")
         print("2. To view tasks")
