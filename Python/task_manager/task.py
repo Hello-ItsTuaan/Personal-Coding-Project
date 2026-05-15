@@ -29,6 +29,7 @@ def add_task():
         task_name = input(">>>")
         task_name_lower = task_name.lower()
 
+
         if is_duplicate(task_name_lower):
             clear()
             print(f"There is another task that named {task_name_lower} - You have 2 options: ".center(width))
@@ -48,39 +49,48 @@ def add_task():
                 choice = input(">>>")
                 clear()
             
-            
-            if choice == "1":
-                
-                for task in updated_task:
-                    if task['name'] == task_name_lower:
-                        current_deadline = task['deadline']
-                        break
-                
-                extra_days = int(input(f"Current deadline: {current_deadline}\nHow many days to add? "))
+            try: 
+                if choice == "1":
+                    
+                    for task in updated_task:
+                        if task['name'] == task_name_lower:
+                            current_deadline = task['deadline']
+                            break
+                    
+                    extra_days = int(input(f"Current deadline: {current_deadline}\nHow many days to add? "))
 
-                for task in updated_task:
-                    if task['name'] == task_name_lower:
-                        old = datetime.fromisoformat(task['deadline'])
-                        task["deadline"] = str(old + timedelta(days=extra_days))
-                        
-                with open("tasks.json", 'w') as file: 
-                    json.dump(updated_task, file, indent=4)
-                        
-                print(f"Added {extra_days} day(s) to {task_name_lower} sucessfully! ")
-                
+                    for task in updated_task:
+                        if task['name'] == task_name_lower:
+                            old = datetime.fromisoformat(task['deadline'])
+                            task["deadline"] = str(old + timedelta(days=extra_days))
+                            
+                    with open("tasks.json", 'w') as file: 
+                        json.dump(updated_task, file, indent=4)
+                            
+                    print(f"Added {extra_days} day(s) to {task_name_lower} sucessfully! ")
 
+                    
+
+                
+                
+                
+                
+                elif choice == "2":
+                    while True:
+                        new_deadline = input(f"Enter new deadline (Ex: 14/01/2013-23:00): ")
+                        try:
+                            deadline_parsed = datetime.strptime(new_deadline, "%d/%m/%Y-%H:%M")  # ✅ validate
+                            break
+                        except ValueError:
+                            print("Wrong format!")
+            except UnboundLocalError:
+                clear()
+                print("Wtf did you type:v")
+                input()
+                menu()
             
             
             
-            
-            elif choice == "2":
-                while True:
-                    new_deadline = input(f"Enter new deadline (Ex: 14/01/2013-23:00): ")
-                    try:
-                        deadline_parsed = datetime.strptime(new_deadline, "%d/%m/%Y-%H:%M")  # ✅ validate
-                        break
-                    except ValueError:
-                        print("Wrong format!")
                     
                     
                 
@@ -113,8 +123,9 @@ def add_task():
             except ValueError as e:
                 print(f"Error found: {e}")
 
-        print(f"Saved your task: {repr(task_deadline)}".center(width))   # ✅
+        print(f"Saved your task: '{task_name}' - {repr(task_deadline)}".center(width))   # ✅
         save_task(task_name_lower, deadline)
+        input()
         break
 
 
@@ -210,6 +221,7 @@ def mark_done():
             print("Please enter a number!")
             input()
 def menu():
+    cleaned_json = []
     while True:
         clear()
         print("Please enter your choice!".center(width))
@@ -223,6 +235,10 @@ def menu():
             list_file()
         elif choice == "3":
             mark_done()
+        elif choice == "reset" or "RESET":
+            with open("tasks.json", 'w') as file: 
+                cleaned_json = json.dump(cleaned_json, file, indent=4)
+
 
 
 menu()
